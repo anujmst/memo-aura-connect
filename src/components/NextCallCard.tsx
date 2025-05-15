@@ -3,13 +3,34 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Clock } from 'lucide-react';
 
+const NEXT_CALL_END_TIME_KEY = 'nextCallEndTime';
+
 const NextCallCard = () => {
   const [timeLeft, setTimeLeft] = useState('');
   const [nextCallTime, setNextCallTime] = useState('');
 
   useEffect(() => {
-    // Set next call to 30 minutes from now
-    const callTime = new Date(Date.now() + 30 * 60 * 1000);
+    let callTime: Date;
+    const storedCallEndTime = localStorage.getItem(NEXT_CALL_END_TIME_KEY);
+
+    if (storedCallEndTime) {
+      const endTime = parseInt(storedCallEndTime, 10);
+      if (endTime > Date.now()) {
+        callTime = new Date(endTime);
+      } else {
+        // Stored time is in the past, schedule a new one
+        localStorage.removeItem(NEXT_CALL_END_TIME_KEY); // Clear outdated item
+        const newCallEndTime = Date.now() + 30 * 60 * 1000;
+        localStorage.setItem(NEXT_CALL_END_TIME_KEY, newCallEndTime.toString());
+        callTime = new Date(newCallEndTime);
+      }
+    } else {
+      // No stored time, schedule a new one
+      const newCallEndTime = Date.now() + 30 * 60 * 1000;
+      localStorage.setItem(NEXT_CALL_END_TIME_KEY, newCallEndTime.toString());
+      callTime = new Date(newCallEndTime);
+    }
+
     const formattedCallTime = callTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     setNextCallTime(formattedCallTime);
 
@@ -19,6 +40,7 @@ const NextCallCard = () => {
 
       if (difference <= 0) {
         setTimeLeft('Now!');
+        localStorage.removeItem(NEXT_CALL_END_TIME_KEY); // Clear storage once call time is reached
         clearInterval(interval);
         return;
       }
