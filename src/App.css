@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* max-width: 1280px; /* This can be handled by page containers if needed */
+  /* margin: 0 auto; /* Centering can be handled by page containers */
+  /* padding: 2rem; /* Padding can be page-specific */
+  /* text-align: center; /* Text alignment should be component-specific */
 }
 
 .logo {
