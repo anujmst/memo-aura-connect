@@ -23,8 +23,9 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 200 86% 60%; /* memotag-blue-sky: #33C3F0 */
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Updated accent colors for hover effects */
+    --accent: 259 89% 96%; /* Very light primary purple for hover background */
+    --accent-foreground: 259 89% 65%; /* Primary purple for text on hover */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -37,7 +38,6 @@
   }
 
   .dark {
-    /* For future dark mode, if needed. Keeping similar structure. */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -56,8 +56,9 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 200 86% 60%;
-    --accent-foreground: 210 40% 98%;
+    /* Updated accent colors for dark mode hover effects */
+    --accent: 259 89% 18%; /* Dark, slightly visible primary purple for hover background */
+    --accent-foreground: 259 89% 75%; /* Primary purple for text on hover in dark mode */
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -89,6 +90,6 @@
 
 @layer components {
   .glassmorphic {
-    @apply bg-white/30 backdrop-blur-lg border border-white/20 shadow-lg;
+    @apply bg-white/30 dark:bg-slate-800/30 backdrop-blur-lg border border-white/20 dark:border-slate-700/20 shadow-lg;
   }
 }
