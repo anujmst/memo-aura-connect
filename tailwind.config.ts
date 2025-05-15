@@ -63,6 +63,9 @@ export default {
 				'memotag-blue-bright': '#1EAEDB',
 				'memotag-blue-ocean': '#0EA5E9',
 			},
+			fontFamily: {
+				display: ['Comic Sans MS', 'Comic Sans', 'cursive'],
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -88,6 +91,49 @@ export default {
         'pulse-subtle': {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '.7' },
+        },
+        'pulse-slow': {
+          '0%, 100%': { opacity: '.7' },
+          '50%': { opacity: '.3' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        'float-slow': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        'float-reverse': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(10px)' },
+        },
+        'beat': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '25%': { transform: 'scale(1.2)' },
+        },
+        'bounce-gentle': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-3px)' },
+        },
+        'wiggle': {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        'rotate-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'spin-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'ping-small': {
+          '75%, 100%': { transform: 'scale(1.2)', opacity: '0' },
+        },
+        'progress': {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
         }
 			},
 			animation: {
@@ -96,7 +142,21 @@ export default {
         'fade-in': 'fade-in 0.5s ease-out forwards',
         'scale-in': 'scale-in 0.3s ease-out forwards',
         'pulse-subtle': 'pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-			}
+        'pulse-slow': 'pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'float-slow': 'float-slow 8s ease-in-out infinite',
+        'float-reverse': 'float-reverse 3.5s ease-in-out infinite',
+        'beat': 'beat 1s ease-in-out infinite',
+        'bounce-gentle': 'bounce-gentle 2s ease-in-out infinite',
+        'wiggle': 'wiggle 1s ease-in-out infinite',
+        'rotate-slow': 'rotate-slow 10s linear infinite',
+        'spin-slow': 'spin-slow 8s linear infinite',
+        'ping-small': 'ping-small 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'progress': 'progress 30s linear infinite',
+			},
+      transitionTimingFunction: {
+        'bounce': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      },
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
