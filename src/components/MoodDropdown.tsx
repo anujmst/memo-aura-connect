@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Select,
@@ -25,19 +24,18 @@ const MoodDropdown = () => {
 
   return (
     <div className="relative mb-8 animate-fade-in animation-delay-500">
-      <div className="absolute -top-10 -left-10 w-20 h-20 bg-yellow-100 rounded-full blur-2xl animate-pulse-slow z-0"></div>
-      <div className="absolute -bottom-10 -right-10 w-20 h-20 bg-purple-100 rounded-full blur-2xl animate-pulse-slow animation-delay-2000 z-0"></div>
+      {/* Removed background blur elements for a cleaner look */}
       
-      <div className="relative z-10 bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-memotag-purple-light/30 shadow-lg hover:shadow-xl transition-all duration-300 group">
+      <div className="relative z-10 bg-white/70 backdrop-blur-md p-4 rounded-2xl border border-memotag-purple-light/20 shadow-lg hover:shadow-xl transition-all duration-300 group">
         <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-memotag-purple-primary via-memotag-blue-sky to-yellow-300 rounded-t-2xl"></div>
         
         <Label 
           htmlFor="mood-select" 
-          className="text-xl font-medium text-memotag-purple-secondary flex items-center mb-4 group-hover:scale-[1.02] transition-transform"
+          className="text-lg font-medium text-memotag-purple-secondary flex items-center mb-3 group-hover:scale-[1.01] transition-transform" // Reduced font size and bottom margin
         >
           <span className="relative mr-2">
             How are you feeling today?
-            <span className="absolute -top-1 -right-4 w-2 h-2 bg-memotag-purple-primary rounded-full animate-ping"></span>
+            <span className="absolute -top-1 -right-3 w-1.5 h-1.5 bg-memotag-purple-primary rounded-full animate-ping-small"></span> {/* Smaller ping */}
           </span>
           {selectedOption?.icon}
         </Label>
@@ -48,7 +46,7 @@ const MoodDropdown = () => {
         >
           <SelectTrigger 
             id="mood-select" 
-            className={`w-full md:w-[320px] bg-white border-2 focus:ring-2 focus:ring-offset-1 focus:ring-memotag-purple-primary/50 text-lg px-5 py-3 h-auto ${selectedOption?.color || 'border-memotag-purple-light'}`}
+            className={`w-full md:w-[300px] bg-white border-2 focus:ring-2 focus:ring-offset-1 focus:ring-memotag-purple-primary/50 text-base px-4 py-2.5 h-auto ${selectedOption?.color || 'border-memotag-purple-light'}`} // Reduced font size, padding, width
           >
             <SelectValue placeholder="Select your mood">
               <div className="flex items-center">
@@ -57,12 +55,12 @@ const MoodDropdown = () => {
               </div>
             </SelectValue>
           </SelectTrigger>
-          <SelectContent className="bg-white/95 backdrop-blur-md border-memotag-purple-light p-2 rounded-xl shadow-xl">
+          <SelectContent className="bg-white/90 backdrop-blur-md border-memotag-purple-light p-1.5 rounded-xl shadow-xl"> {/* Adjusted padding */}
             {moodOptions.map(option => (
               <SelectItem 
                 key={option.value} 
                 value={option.value}
-                className={`my-1 rounded-lg ${option.color} text-lg focus:bg-memotag-purple-soft/50 focus:text-memotag-purple-tertiary pl-4 pr-10 py-3 cursor-pointer hover:scale-[1.02] transition-all`}
+                className={`my-0.5 rounded-lg ${option.color} text-base focus:bg-memotag-purple-soft/50 focus:text-memotag-purple-tertiary pl-3 pr-8 py-2.5 cursor-pointer hover:scale-[1.01] transition-all`} // Reduced font size, padding, margin, hover scale
               >
                 <div className="flex items-center">
                   {option.icon}
@@ -73,12 +71,12 @@ const MoodDropdown = () => {
           </SelectContent>
         </Select>
         
-        <div className="flex justify-center space-x-2 mt-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-bounce-gentle"></span>
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce-gentle animation-delay-200"></span>
-          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce-gentle animation-delay-400"></span>
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce-gentle animation-delay-600"></span>
-          <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-bounce-gentle animation-delay-800"></span>
+        <div className="flex justify-center space-x-1.5 mt-3"> {/* Reduced spacing and top margin */}
+          <span className="w-1 h-1 rounded-full bg-yellow-400 animate-bounce-gentle"></span>
+          <span className="w-1 h-1 rounded-full bg-blue-400 animate-bounce-gentle animation-delay-200"></span>
+          <span className="w-1 h-1 rounded-full bg-purple-400 animate-bounce-gentle animation-delay-400"></span>
+          <span className="w-1 h-1 rounded-full bg-indigo-400 animate-bounce-gentle animation-delay-600"></span>
+          <span className="w-1 h-1 rounded-full bg-red-400 animate-bounce-gentle animation-delay-800"></span>
         </div>
       </div>
     </div>

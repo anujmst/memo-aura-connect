@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Clock } from 'lucide-react';
@@ -47,45 +46,45 @@ const NextCallCard = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [toast]);
 
   return (
-    <Card className="w-full relative overflow-hidden animate-float group hover:scale-[1.02] transition-transform ease-bounce duration-300 border-memotag-purple-light shadow-md hover:shadow-xl bg-gradient-to-br from-white/90 to-memotag-purple-soft/50">
-      <div className="absolute -right-12 -top-12 w-40 h-40 bg-memotag-purple-primary/10 rounded-full blur-2xl animate-pulse-slow"></div>
-      <div className="absolute -left-12 -bottom-12 w-40 h-40 bg-memotag-blue-sky/10 rounded-full blur-2xl animate-pulse-slow animation-delay-2000"></div>
+    <Card className="w-full relative overflow-hidden group hover:scale-[1.02] transition-transform ease-bounce duration-300 bg-white/70 backdrop-blur-md border border-memotag-purple-light/30 shadow-lg hover:shadow-xl">
+      <div className="absolute -right-10 -top-10 w-32 h-32 bg-memotag-purple-primary/5 rounded-full blur-xl animate-pulse-slow opacity-70"></div>
+      <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-memotag-blue-sky/5 rounded-full blur-xl animate-pulse-slow animation-delay-2000 opacity-70"></div>
       
       <CardHeader className="relative z-10">
-        <CardTitle className="flex items-center text-memotag-purple-tertiary text-2xl">
-          <Clock className="w-6 h-6 mr-3 text-memotag-purple-primary animate-bounce-gentle" />
+        <CardTitle className="flex items-center text-memotag-purple-tertiary text-xl">
+          <Clock className="w-5 h-5 mr-2.5 text-memotag-purple-primary animate-bounce-gentle" />
           <span className="relative">
             Next Call
-            <span className="absolute -top-1 -right-4 w-3 h-3 bg-memotag-purple-primary rounded-full animate-ping"></span>
+            <span className="absolute -top-0.5 -right-3 w-2.5 h-2.5 bg-memotag-purple-primary/70 rounded-full animate-ping-small"></span>
           </span>
         </CardTitle>
-        <CardDescription className="text-memotag-purple-secondary text-lg">Your upcoming scheduled session.</CardDescription>
+        <CardDescription className="text-memotag-purple-secondary/90 text-base">Your upcoming scheduled session.</CardDescription>
       </CardHeader>
       
-      <CardContent className="text-center relative z-10">
-        <div className="space-y-6 py-2">
+      <CardContent className="text-center relative z-10 pb-6 pt-2">
+        <div className="space-y-4 py-1">
           <div className="relative">
-            <p className="text-xl text-memotag-purple-secondary">
+            <p className="text-lg text-memotag-purple-secondary">
               Next call at: <span className="font-bold text-memotag-purple-primary relative inline-block">
                 {nextCallTime}
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-memotag-purple-light transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-memotag-purple-light transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </span>
             </p>
           </div>
           
-          <div className="bg-white/80 backdrop-blur-sm py-4 px-6 rounded-xl shadow-inner transition-all duration-300 hover:bg-white/90 border border-white">
-            <p className="text-5xl font-bold text-memotag-purple-primary animate-pulse-subtle tracking-wider font-display">
+          <div className="bg-white/60 backdrop-blur-sm py-3 px-4 rounded-xl shadow-inner transition-all duration-300 hover:bg-white/70 border border-white/50">
+            <p className="text-4xl font-bold text-memotag-purple-primary animate-pulse-subtle tracking-wide font-display">
               {timeLeft}
             </p>
-            <p className="text-sm text-memotag-purple-secondary/80 mt-2 animate-fade-in animation-delay-300">
-              Time remaining until your next adventure!
+            <p className="text-xs text-memotag-purple-secondary/70 mt-1.5 animate-fade-in animation-delay-300">
+              Time remaining!
             </p>
           </div>
           
-          <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+          <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-memotag-purple-primary to-memotag-blue-bright animate-progress rounded-full"></div>
           </div>
         </div>

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import MoodDropdown from '@/components/MoodDropdown';
 import NextCallCard from '@/components/NextCallCard';
@@ -14,7 +13,10 @@ const DashboardPage = () => {
 
   useEffect(() => {
     // Add confetti effect when dashboard loads
-    const createFloatingElement = (elementType, count, classNames) => {
+    const createFloatingElement = (count: number, classNames: string) => {
+      const container = document.getElementById('confetti-container');
+      if (!container) return;
+
       for (let i = 0; i < count; i++) {
         const element = document.createElement('div');
         element.className = classNames;
@@ -23,24 +25,25 @@ const DashboardPage = () => {
         element.style.left = `${Math.random() * 100}%`;
         element.style.top = `${Math.random() * 100}%`;
         
-        // Random animation duration
-        element.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        // Random animation duration & delay
+        element.style.animationDuration = `${Math.random() * 15 + 15}s`; // Slower duration
+        element.style.animationDelay = `${Math.random() * 5}s`;
         
-        document.getElementById('confetti-container').appendChild(element);
+        container.appendChild(element);
         
-        // Remove after animation completes
+        // Remove after animation completes + a buffer
         setTimeout(() => {
           if (element.parentNode) {
             element.parentNode.removeChild(element);
           }
-        }, 20000);
+        }, 30000); // Increased timeout to match longer potential durations
       }
     };
     
-    // Create various floating elements
-    createFloatingElement('star', 8, 'absolute w-4 h-4 text-yellow-300 animate-float z-0 opacity-30');
-    createFloatingElement('heart', 5, 'absolute w-3 h-3 text-red-300 animate-float-reverse z-0 opacity-30');
-    createFloatingElement('sparkle', 7, 'absolute w-5 h-5 text-purple-300 animate-float z-0 opacity-30');
+    // Create various floating elements - reduced count, smaller, fainter, slower
+    createFloatingElement(3, 'absolute w-2 h-2 text-yellow-200 animate-float-slow z-0 opacity-10'); // Stars
+    createFloatingElement(2, 'absolute w-1.5 h-1.5 text-red-200 animate-float-reverse z-0 opacity-10'); // Hearts
+    createFloatingElement(3, 'absolute w-2.5 h-2.5 text-purple-200 animate-float z-0 opacity-10'); // Sparkles
     
     return () => {
       // Cleanup floating elements on unmount
@@ -55,8 +58,8 @@ const DashboardPage = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-memotag-purple-soft via-memotag-blue-sky/10 to-white p-4 md:p-8 animate-fade-in relative overflow-hidden">
       {/* Background decoration */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" id="confetti-container"></div>
-      <div className="absolute top-[10%] left-[5%] w-40 h-40 bg-memotag-purple-soft rounded-full blur-3xl opacity-30 animate-pulse-slow"></div>
-      <div className="absolute bottom-[5%] right-[10%] w-60 h-60 bg-memotag-blue-sky/20 rounded-full blur-3xl opacity-30 animate-pulse-slow animation-delay-3000"></div>
+      <div className="absolute top-[10%] left-[5%] w-40 h-40 bg-memotag-purple-soft/70 rounded-full blur-3xl opacity-20 animate-pulse-slow"></div>
+      <div className="absolute bottom-[5%] right-[10%] w-60 h-60 bg-memotag-blue-sky/10 rounded-full blur-3xl opacity-20 animate-pulse-slow animation-delay-3000"></div>
       
       {/* Doodle elements */}
       <DoodleStar className="absolute top-[15%] right-[10%] w-12 h-12 text-yellow-400/30 animate-rotate-slow" />
